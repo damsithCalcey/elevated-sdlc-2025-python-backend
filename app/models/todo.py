@@ -10,7 +10,7 @@ class Todo:
         self.title = title
         self.description = description
         self.due_date = due_date
-        self.created_date = datetime.utcnow().isoformat()
+        self.created_date = datetime.now().isoformat()
         self.done = False
 
     def to_dict(self):
