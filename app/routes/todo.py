@@ -11,7 +11,6 @@ def get_todos():
     return jsonify([todo.to_dict() for todo in todos])
 
 
-
 @todo_bp.route('', methods=['POST'])
 def add_todo():
     data = request.get_json()
@@ -33,7 +32,7 @@ def update_todo(todo_id):
             todo.update(data)
             return jsonify(todo.to_dict())
 
-    return jsonify({"error": "Todo not found"}), 404
+    return jsonify({"error": "TODO not found"}), 404
 
 
 @todo_bp.route('/<int:todo_id>', methods=['DELETE'])
