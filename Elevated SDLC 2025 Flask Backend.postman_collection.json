@@ -13,7 +13,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{API_HOST}}/todos?search=wash",
+					"raw": "{{API_HOST}}/todos?search=car&status=in_progress",
 					"host": [
 						"{{API_HOST}}"
 					],
@@ -23,7 +23,11 @@
 					"query": [
 						{
 							"key": "search",
-							"value": "wash"
+							"value": "car"
+						},
+						{
+							"key": "status",
+							"value": "in_progress"
 						}
 					]
 				}
@@ -63,7 +67,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"description\": \"Take the car to the car wash place in the town\",\r\n    \"done\": true\r\n}",
+					"raw": "{\r\n    \"description\": \"Take the car to the car wash place in the town\",\r\n    \"status\": \"in_progress\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -71,13 +75,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{API_HOST}}/todos/2",
+					"raw": "{{API_HOST}}/todos/1",
 					"host": [
 						"{{API_HOST}}"
 					],
 					"path": [
 						"todos",
-						"2"
+						"1"
 					]
 				}
 			},
@@ -89,13 +93,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{API_HOST}}/todos/2",
+					"raw": "{{API_HOST}}/todos/1",
 					"host": [
 						"{{API_HOST}}"
 					],
 					"path": [
 						"todos",
-						"2"
+						"1"
 					]
 				}
 			},
