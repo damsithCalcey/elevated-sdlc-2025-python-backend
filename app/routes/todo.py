@@ -8,7 +8,21 @@ todos: List[Todo] = []
 
 @todo_bp.route('', methods=['GET'])
 def get_todos():
-    return jsonify([todo.to_dict() for todo in todos])
+    search = request.args.get('search', '').lower()
+    done = request.args.get('done')
+
+    # Parse 'done' parameter to boolean
+    if done is not None:
+        done = done.lower() == 'true'
+
+    filtered = [
+        todo.to_dict()
+        for todo in todos
+        if (search in todo.title.lower() if search else True)
+        and (todo.done == done if request.args.get('done') is not None else True)
+    ]
+
+    return jsonify(filtered)
 
 
 @todo_bp.route('', methods=['POST'])
