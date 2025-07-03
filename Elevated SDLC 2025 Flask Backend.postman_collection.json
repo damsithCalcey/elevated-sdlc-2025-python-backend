@@ -13,12 +13,18 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{API_HOST}}/todos",
+					"raw": "{{API_HOST}}/todos?search=wash",
 					"host": [
 						"{{API_HOST}}"
 					],
 					"path": [
 						"todos"
+					],
+					"query": [
+						{
+							"key": "search",
+							"value": "wash"
+						}
 					]
 				}
 			},
@@ -121,7 +127,7 @@
 	"variable": [
 		{
 			"key": "API_HOST",
-			"value": "localhost:5001/api/v1",
+			"value": "localhost:5000/api/v1",
 			"type": "string"
 		}
 	]
