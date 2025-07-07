@@ -65,6 +65,24 @@ Returns a list of all TODO items.
 ]
 ```
 
+### GET `/<id>`
+Returns a single TODO.
+
+#### 🔸 Path Parameter
+- `id` (integer): The ID of the TODO to fetch
+
+#### Response:
+```json
+{
+  "id": 1,
+  "title": "Buy milk",
+  "description": "Get 2 liters of milk",
+  "due_date": "2025-06-25",
+  "created_date": "2025-06-23T10:00:00",
+  "done": true
+}
+```
+
 ### 🔹 POST `/`
 
 Creates a new TODO item.

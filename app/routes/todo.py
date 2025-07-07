@@ -24,6 +24,15 @@ def get_todos():
     return jsonify(filtered)
 
 
+@todo_bp.route('/<int:todo_id>', methods=['GET'])
+def get_todo(todo_id):
+    for todo in todos:
+        if todo.id == todo_id:
+            return jsonify(todo.to_dict()), 200
+        
+    return jsonify({"error": "TODO not found"}), 404
+
+
 @todo_bp.route('', methods=['POST'])
 def add_todo():
     data = request.get_json()
