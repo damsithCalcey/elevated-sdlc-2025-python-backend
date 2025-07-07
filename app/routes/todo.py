@@ -15,6 +15,13 @@ def get_todos():
     return jsonify(todos)
 
 
+@todo_bp.route('/<int:todo_id>', methods=['GET'])
+def get_todo(todo_id):
+    todo = get_todo_by_id(todo_id)
+
+    return jsonify(todo)
+
+
 @todo_bp.route('', methods=['POST'])
 def add_todo():
     data = request.get_json()
