@@ -8,14 +8,17 @@ todos: List[Todo] = []
 
 @todo_bp.route('', methods=['GET'])
 def get_todos():
-    search = request.args.get('search', '').lower()
-    status = request.args.get('status')
+    search_filter = request.args.get('search', '').lower()
+    done_filter = request.args.get("done")
+
+    if done_filter is not None:
+        done_filter = str(done_filter).lower() == "true"
 
     filtered = [
         todo.to_dict()
         for todo in todos
-        if (search in todo.title.lower() if search else True)
-        and (todo.status == status if status else True)
+        if (search_filter in todo.title.lower() if search_filter else True)
+        and (todo.done == done_filter if done_filter else True)
     ]
 
     return jsonify(filtered)
@@ -24,15 +27,11 @@ def get_todos():
 @todo_bp.route('', methods=['POST'])
 def add_todo():
     data = request.get_json()
-    try:
-        new_todo = Todo(
-            title=data.get("title"),
-            description=data.get("description", ""),
-            due_date=data.get("due_date"),
-            status=data.get("status", "backlog")
-        )
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
+    new_todo = Todo(
+        title=data.get("title"),
+        description=data.get("description", ""),
+        due_date=data.get("due_date")
+    )
     
     todos.append(new_todo)
 
@@ -44,10 +43,7 @@ def update_todo(todo_id):
     data = request.get_json()
     for todo in todos:
         if todo.id == todo_id:
-            try:
-                todo.update(data)
-            except ValueError as e:
-                return jsonify({"error": str(e)}), 400
+            todo.update(data)
             
             return jsonify(todo.to_dict())
 
