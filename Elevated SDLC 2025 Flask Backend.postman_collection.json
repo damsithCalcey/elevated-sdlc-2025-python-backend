@@ -69,7 +69,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"description\": \"Take the car to the car wash place in the town\",\r\n    \"status\": \"in_progress\"\r\n}",
+					"raw": "{\r\n    \"description\": \"Fruits, veggies, meat, ice cream\",\r\n    \"done\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -77,13 +77,13 @@
 					}
 				},
 				"url": {
-					"raw": "{{API_HOST}}/todos/1",
+					"raw": "{{API_HOST}}/todos/0",
 					"host": [
 						"{{API_HOST}}"
 					],
 					"path": [
 						"todos",
-						"1"
+						"0"
 					]
 				}
 			},
@@ -95,13 +95,13 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{API_HOST}}/todos/1",
+					"raw": "{{API_HOST}}/todos/0",
 					"host": [
 						"{{API_HOST}}"
 					],
 					"path": [
 						"todos",
-						"1"
+						"0"
 					]
 				}
 			},

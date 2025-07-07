@@ -11,7 +11,7 @@ This project serves as an educational backend template for teaching **REST API f
 2. **In-memory TODO management** (no external database needed)
 3. Supports:
    - Creating, reading, updating, and deleting TODO items
-   - Optional filtering by title (`search`) and status (`status`)
+   - Optional filtering by title (`search`) and completion status (`done`)
 4. Modular codebase with:
    - Blueprint routing
    - Basic model abstraction
@@ -47,8 +47,8 @@ Returns a list of all TODO items.
 #### Optional Query Parameters:
 - `search` (string): Filter by partial match on title  
   e.g., `?search=milk`
-- `status` (string): Filter by status (`backlog`, `open`, `in_progress` or `done`)  
-  e.g., `?status=in_progress`
+- `done` (boolean): Filter by completion status (`true` or `false`)  
+  e.g., `?done=true`
 
 #### Response:
 ```json
@@ -59,7 +59,7 @@ Returns a list of all TODO items.
     "description": "Get 2 liters of milk",
     "due_date": "2025-06-25",
     "created_date": "2025-06-23T10:00:00",
-    "status": "in_progress"
+    "done": "true"
   }
 ]
 ```
@@ -90,7 +90,7 @@ Updates an existing TODO item by its ID.
   "title": "Finish report",
   "description": "Add summary section",
   "due_date": "2025-07-01",
-  "status": "done"
+  "done": "true"
 }
 ```
 
