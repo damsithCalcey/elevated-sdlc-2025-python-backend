@@ -30,7 +30,8 @@ flask_app/
 │   │   └── todo.py            # Todo model class
 │   └── routes/
 │       ├── __init__.py        # Blueprint registration
-│       └── todo_routes.py     # API endpoints for TODOs
+│       └── main.py            # API endpoints for main routes
+│       └── todo.py            # API endpoints for TODOs
 ├── run.py                     # App entry point
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # Project documentation
