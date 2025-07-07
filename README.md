@@ -59,7 +59,7 @@ Returns a list of all TODO items.
     "description": "Get 2 liters of milk",
     "due_date": "2025-06-25",
     "created_date": "2025-06-23T10:00:00",
-    "done": "true"
+    "done": true
   }
 ]
 ```
@@ -90,7 +90,7 @@ Updates an existing TODO item by its ID.
   "title": "Finish report",
   "description": "Add summary section",
   "due_date": "2025-07-01",
-  "done": "true"
+  "done": true
 }
 ```
 
