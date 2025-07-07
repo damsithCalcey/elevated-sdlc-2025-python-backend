@@ -13,7 +13,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{API_HOST}}/todos?search=car&status=in_progress",
+					"raw": "{{API_HOST}}/todos",
 					"host": [
 						"{{API_HOST}}"
 					],
@@ -23,11 +23,13 @@
 					"query": [
 						{
 							"key": "search",
-							"value": "car"
+							"value": "buy",
+							"disabled": true
 						},
 						{
-							"key": "status",
-							"value": "in_progress"
+							"key": "done",
+							"value": "true",
+							"disabled": true
 						}
 					]
 				}
@@ -41,7 +43,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"title\": \"Wash the car\",\r\n    \"description\": \"\",\r\n    \"due_date\": \"19/06/2025\"\r\n}",
+					"raw": "{\r\n    \"title\": \"Buy groceries\",\r\n    \"description\": \"Fruits, veggies, meat\",\r\n    \"due_date\": \"25/07/2025\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"

@@ -1,62 +1,57 @@
-from flask import Blueprint, request, jsonify
-from typing import List
-
-from app.models.todo import Todo
+from flask import Blueprint, request, jsonify, abort
+from datetime import datetime
 
 todo_bp = Blueprint('todo', __name__, url_prefix='/api/v1/todos')
-todos: List[Todo] = []
+todos= []
+
+def get_todo_by_id(todo_id: int):
+    if todo_id < 0 or todo_id >= len(todos):
+        abort(404, description="TODO not found")
+    return todos[todo_id]
+
 
 @todo_bp.route('', methods=['GET'])
 def get_todos():
-    search = request.args.get('search', '').lower()
-    status = request.args.get('status')
-
-    filtered = [
-        todo.to_dict()
-        for todo in todos
-        if (search in todo.title.lower() if search else True)
-        and (todo.status == status if status else True)
-    ]
-
-    return jsonify(filtered)
+    return jsonify(todos)
 
 
 @todo_bp.route('', methods=['POST'])
 def add_todo():
     data = request.get_json()
-    try:
-        new_todo = Todo(
-            title=data.get("title"),
-            description=data.get("description", ""),
-            due_date=data.get("due_date"),
-            status=data.get("status", "backlog")
-        )
-    except ValueError as e:
-        return jsonify({"error": str(e)}), 400
-    
+    new_todo = {
+        "id": len(todos),
+        "title": data.get("title"),
+        "description": data.get("description", ""),
+        "due_date": data.get("due_date"),
+        "created_date": datetime.now().isoformat(),
+        "done": data.get("done", False)
+    }
     todos.append(new_todo)
 
-    return jsonify(new_todo.to_dict()), 201
+    return jsonify(new_todo), 201
 
 
 @todo_bp.route('/<int:todo_id>', methods=['PUT'])
 def update_todo(todo_id):
     data = request.get_json()
-    for todo in todos:
-        if todo.id == todo_id:
-            try:
-                todo.update(data)
-            except ValueError as e:
-                return jsonify({"error": str(e)}), 400
-            
-            return jsonify(todo.to_dict())
+    todo = get_todo_by_id(todo_id)
 
-    return jsonify({"error": "TODO not found"}), 404
+    todo["title"] = data.get("title", todo["title"])
+    todo["description"] = data.get("description", todo["description"])
+    todo["due_date"] = data.get("due_date", todo["due_date"])
+
+    if "done" in data:
+        done_value = data.get("done")
+        todo["done"] = str(done_value).lower() == "true"
+
+    return jsonify(todo), 200
 
 
 @todo_bp.route('/<int:todo_id>', methods=['DELETE'])
 def delete_todo(todo_id):
     global todos
-    todos = [t for t in todos if t.id != todo_id]
 
+    todo = get_todo_by_id(todo_id)
+    todos.remove(todo)
+    
     return jsonify({"message": "Deleted"}), 204
