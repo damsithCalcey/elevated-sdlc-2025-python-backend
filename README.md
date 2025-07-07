@@ -9,12 +9,8 @@ This project serves as an educational backend template for teaching **REST API f
 
 1. **Simple RESTful API** built using Flask
 2. **In-memory TODO management** (no external database needed)
-3. Supports:
-   - Creating, reading, updating, and deleting TODO items
-   - Optional filtering by title (`search`) and completion status (`done`)
-4. Modular codebase with:
-   - Blueprint routing
-   - Basic model abstraction
+3. Supports creating, reading, updating, and deleting TODO items
+4. Modular codebase with blueprint routing
 5. Clean JSON responses
 6. Beginner-friendly virtual environment setup
 
@@ -26,11 +22,10 @@ flask_app/
 ├── app/
 │   ├── __init__.py            # Flask app factory
 │   ├── extensions.py          # Placeholder for future extensions
-│   ├── models/
-│   │   └── todo.py            # Todo model class
 │   └── routes/
 │       ├── __init__.py        # Blueprint registration
-│       └── todo_routes.py     # API endpoints for TODOs
+│       └── main.py            # API endpoints for main routes
+│       └── todo.py            # API endpoints for TODOs
 ├── run.py                     # App entry point
 ├── requirements.txt           # Python dependencies
 ├── README.md                  # Project documentation
@@ -59,7 +54,7 @@ Returns a list of all TODO items.
     "description": "Get 2 liters of milk",
     "due_date": "2025-06-25",
     "created_date": "2025-06-23T10:00:00",
-    "done": "true"
+    "done": true
   }
 ]
 ```
@@ -90,7 +85,7 @@ Updates an existing TODO item by its ID.
   "title": "Finish report",
   "description": "Add summary section",
   "due_date": "2025-07-01",
-  "done": "true"
+  "done": true
 }
 ```
 
