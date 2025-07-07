@@ -18,7 +18,7 @@ def get_todos():
         todo.to_dict()
         for todo in todos
         if (search_filter in todo.title.lower() if search_filter else True)
-        and (todo.done == done_filter if done_filter else True)
+        and (todo.done == done_filter if done_filter is not None else True)
     ]
 
     return jsonify(filtered)
