@@ -40,7 +40,7 @@ flask_app/
 
 ## 📘 API Endpoints
 
-Base URL: `http://localhost:5000/api/v1/todos`
+Base URL: `http://localhost:5001/api/v1/todos`
 
 ### GET `/`
 Returns a list of all TODO items.
@@ -146,7 +146,7 @@ Deletes a TODO item by its ID.
     - ```source venv/bin/activate``` (Linux/MacOS).
 6. Install the project dependencies by running ```pip install -r requirements.txt```.
 7. Start the backend by running ```python run.py```.
-8. Navigate to ```localhost:5000/api/v1``` on your browser of choice.
+8. Navigate to ```localhost:5001/api/v1``` on your browser of choice.
 
 ## 💡 License
 
